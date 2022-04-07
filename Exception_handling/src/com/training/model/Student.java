@@ -1,5 +1,7 @@
 package com.training.model;
 
+import com.training.exception.RangeCheckException;
+
 public class Student {
 	private int rollNumber;
 	private String firstName;
@@ -8,11 +10,15 @@ public class Student {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Student(int rollNumber, String firstName, double markScored) {
+	public Student(int rollNumber, String firstName, double markScored) throws RangeCheckException  {
 		super();
+		if(markScored<0) {
+			throw new RangeCheckException("Mark should be positive Integer [0-100]");
+		} else {
 		this.rollNumber = rollNumber;
 		this.firstName = firstName;
 		this.markScored = markScored;
+		}
 	}
 	public int getRollNumber() {
 		return rollNumber;
@@ -29,8 +35,18 @@ public class Student {
 	public double getMarkScored() {
 		return markScored;
 	}
-	public void setMarkScored(double markScored) {
+	public void setMarkScored(double markScored)  {
+		if(markScored<0) {
+			try {
+				throw new RangeCheckException("Mark should be positive Integer [0-100]");
+			} catch (RangeCheckException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				
+			}
+		} else {
 		this.markScored = markScored;
+		}
 	}
 	@Override
 	public String toString() {
