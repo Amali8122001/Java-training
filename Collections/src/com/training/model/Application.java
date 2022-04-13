@@ -5,11 +5,12 @@ import java.util.List;
 public class Application {
 	
 	public static void print(List<Book> books)       {
-		for(Book eachBook:books) {
-			
-			System.out.println(eachBook);
-			
-		}
+//		for(Book eachBook:books) {
+//			
+//			System.out.println(eachBook);
+//			
+//		}
+		books.forEach(System.out::println);
 		
 	}
 	
@@ -17,14 +18,13 @@ public class Application {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		Book java = new Book(101, "Java", "suba", 450);
+		Book java = new Book(101, "Java", "suba", 150);
 		Book spring = new Book(102, "Spring", "mad", 650);
 		Book maven = new Book(103, "Maven", "Suresh", 550);
-		Book html = new Book(104, "Html", "Amali", 1450);
+		Book html = new Book(104, "Html", "Amali", 50);
 		Book python = new Book(105, "Python", "Vedha", 850);
 		
 		CrudeRepository service = new BookService ();
-		
 		
 		
 		System.out.println("Is Added :=" +service.add(java));
@@ -32,6 +32,12 @@ public class Application {
 		service.add(maven);
 	    service.add(html);
 		service.add(python);
+		
+		System.out.println("Greater than 350");
+		List<Book> bookList =(( BookService)service).getBooksGrtthan(350);
+		bookList.forEach(System.out::println);
+		
+		
 		//print(service.findAll());
 		
 				
@@ -43,11 +49,11 @@ public class Application {
         
         
       // }
-        Book foundBook = service.findById(101);
-        System.out.println("Found Book"+ foundBook);
-        
-        service.remove(python);
-        
+//        Book foundBook = service.findById(101);
+//        System.out.println("Found Book"+ foundBook);
+//        
+//        service.remove(python);
+//        
         System.out.println("==============");
         print(service.findAll());
         Book react = new Book(105, "React", "Vedha", 1850);
@@ -66,6 +72,8 @@ public class Application {
         System.out.println("======AFTER UPDATE=======");
         
         print(service.findAll());
+        
+        
         
                 
        

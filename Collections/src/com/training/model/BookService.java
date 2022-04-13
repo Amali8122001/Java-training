@@ -2,6 +2,7 @@ package com.training.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class BookService implements CrudeRepository {
 	
@@ -58,5 +59,26 @@ public class BookService implements CrudeRepository {
 		
 		return newBook;
 	}
+	
+	public List<Book> getBooksGrtthan(double price) {
+		
+		List<Book> grtThanList = new ArrayList<>();
+		Predicate<Double> grtThan =  (value) -> value > price;
+		
+		this.bookList.forEach(book -> 
+		{
+			
+			double bookPrice = book.getPrice();
+			
+		if (grtThan.test(bookPrice)) { 
+		grtThanList.add(book);
+		}
+		});
+		return grtThanList;9d
+		
+		
+	}
+	
+	
 
 }
