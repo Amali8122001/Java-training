@@ -32,5 +32,8 @@ printPremium(life);
 String[] illness = { "bp" , "sugar", "ent", "thyroid"};
 HealthInsurance health = new HealthInsurance (3030, "vicky",illness);
 printPremium(health);
+
+
+
 }
 }
