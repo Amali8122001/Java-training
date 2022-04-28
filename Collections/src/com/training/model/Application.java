@@ -37,6 +37,18 @@ public class Application {
 		List<Book> bookList =(( BookService)service).getBooksGrtthan(350);
 		bookList.forEach(System.out::println);
 		
+		List<String> nameList = ((BookService)service).getBookName();
+		nameList.forEach(System.out::println);
+		
+		System.out.println("======================");
+		
+		List<String> grtThanNineHundred = ((BookService)service).getBookName();
+		grtThanNineHundred.forEach(System.out::println);
+		
+		System.out.println("Sorted by name");
+		
+		List<Book> sortedByName = ((BookService)service).sortedByName();
+		sortedByName.forEach(System.out::println);
 		
 		//print(service.findAll());
 		

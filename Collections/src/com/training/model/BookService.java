@@ -1,6 +1,9 @@
 package com.training.model;
 
 import java.util.ArrayList;
+
+
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -60,6 +63,22 @@ public class BookService implements CrudeRepository {
 		return newBook;
 	}
 	
+	public List <String> getBookPrice() {
+		return this.bookList.stream().filter(e -> e.getPrice()>price).collect(toList());
+		
+			}
+	
+	public list <Book> sortedByName() {
+		return this.bookList.stream().sorted(Comparator.comparing(Book::getBookName)).collect(toList());
+	}
+	public List <String> getBookName() {
+		
+		return this.bookList.stream().map(e -> e.getBookName()).collect(toList());
+	}
+	
+	public List<String> getBookNameGrtThanPrice(double price) {
+		return this.bookList.stream().filter(e -> e.getPrice()>price).map(e -> e.getBookName()).collect(toList());
+	}
 	public List<Book> getBooksGrtthan(double price) {
 		
 		List<Book> grtThanList = new ArrayList<>();
@@ -74,7 +93,7 @@ public class BookService implements CrudeRepository {
 		grtThanList.add(book);
 		}
 		});
-		return grtThanList;9d
+		return grtThanList;
 		
 		
 	}
