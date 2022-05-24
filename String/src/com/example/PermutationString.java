@@ -15,7 +15,7 @@ public class PermutationString {
    }
    public static void generatePermutation(String str , int start , int end) {
 		
-		if(start == end-1) {
+		if(start == end) {
 			System.out.println(str);
 		} else {
 	

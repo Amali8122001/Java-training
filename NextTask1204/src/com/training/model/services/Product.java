@@ -96,7 +96,7 @@ public class Product implements Comparable {
 	@Override
 	public int compareTo(Object obj) {
 		// TODO Auto-generated method stub
-		return this.productName.compareTo(obj.equals(productName));
+		return this.setProductName(obj.equals(productName));
 	}
 	
 	

@@ -68,7 +68,7 @@ public class BookService implements CrudeRepository {
 		
 			}
 	
-	public list <Book> sortedByName() {
+	public List <Book> sortedByName() {
 		return this.bookList.stream().sorted(Comparator.comparing(Book::getBookName)).collect(toList());
 	}
 	public List <String> getBookName() {

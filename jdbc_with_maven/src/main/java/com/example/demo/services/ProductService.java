@@ -139,6 +139,82 @@ public class ProductService {
 		return productList;
 	}
 	
+	public void usingTxn(Product prd1 , Product prd2) {
+		
+		String sql = "insert into amali_product values(?,?,?)";
+				
+				try(PreparedStatement pstmt = con.prepareStatement(sql);
+						) {
+					 
+					con.setAutoCommit(false);
+					
+					pstmt.setInt(1, prd1.getProductId());
+					pstmt.setString(2, prd1.getProductName());
+					pstmt.setDouble(3, prd1.getPrice());
+					
+					int rowAdded=pstmt.executeUpdate();
+					
+					pstmt.setInt(1, prd2.getProductId());
+					pstmt.setString(2, prd2.getProductName());
+					pstmt.setDouble(3, prd2.getPrice());
+					
+					int rowAdded2=pstmt.executeUpdate();
+					
+					if(prd2.getPrice()>prd1.getPrice()) {
+						
+						con.commit(); } else {
+							
+							con.rollback();
+						}
+						
+					
+					
+					System.out.println("Row Added:=" +rowAdded +"," +rowAdded2);
+					
+				} catch(SQLException e ) {
+					
+					e.printStackTrace();
+				}
+	}
 	
+	
+public void usingTxnWithCatchblock(Product prd1 , Invoice invoice) {
+		
+		String sql = "insert into amali_product values(?,?,?)";
+				
+				try(PreparedStatement pstmt = con.prepareStatement(sql);
+						) {
+					 
+					con.setAutoCommit(false);
+					
+					pstmt.setInt(1, prd1.getProductId());
+					pstmt.setString(2, prd1.getProductName());
+					pstmt.setDouble(3, prd1.getPrice());
+					
+					int rowAdded=pstmt.executeUpdate();
+					
+					pstmt.setInt(1, invoice.getInvoiceNumber());
+					pstmt.setString(2,invoice.getCustomerName());
+					pstmt.setDouble(3,invoice.getQuantity());
+					pstmt.setDouble(3,invoice.getProductRef());
+					
+					int rowAdded2=pstmt.executeUpdate();
+					
+					if(invoice.getQuantity()>prd1.getPrice()) {
+						
+						con.commit(); } else {
+							
+							con.rollback();
+						}
+						
+					
+					
+					System.out.println("Row Added:=" +rowAdded +"," +rowAdded2);
+					
+				} catch(SQLException e ) {
+					
+					e.printStackTrace();
+				}
+	}
 
 }
